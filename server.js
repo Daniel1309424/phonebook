@@ -1,11 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
-const app = express();
-const port = 3001;
 const cors = require('cors');
+
+const app = express();
+
+// Middlewares
 app.use(cors());
-
-
 app.use(express.json());
 
 // Custom token to log POST request body
@@ -74,6 +74,7 @@ app.delete('/api/persons/:id', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// Export the express app as a function for Vercel
+module.exports = (req, res) => {
+  app(req, res);
+};
