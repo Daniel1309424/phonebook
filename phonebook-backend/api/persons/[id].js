@@ -5,25 +5,25 @@ const phonebookEntries = [
     { id: "4", name: "Mary Poppendieck", number: "39-23-6423122" }
   ];
   
-  module.exports = (req, res) => {
+  export default (req, res) => {
     const { id } = req.query; 
     
     if (req.method === 'GET') {
-      // Find the person with the given id
+      
       const person = phonebookEntries.find(p => p.id === id);
       
       if (person) {
-        return res.status(200).json(person); // Send the person data if found
+        return res.status(200).json(person); 
       } else {
         return res.status(404).json({ error: 'Person not found' });
       }
     } else if (req.method === 'DELETE') {
-      // Find the index of the person with the given id
+     
       const index = phonebookEntries.findIndex(p => p.id === id);
       
       if (index !== -1) {
-        phonebookEntries.splice(index, 1); // Remove the person from the array
-        return res.status(204).end(); // Successfully deleted
+        phonebookEntries.splice(index, 1); 
+        return res.status(204).end(); 
       } else {
         return res.status(404).json({ error: 'Person not found' });
       }

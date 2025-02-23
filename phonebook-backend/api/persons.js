@@ -11,7 +11,7 @@ const phonebookEntries = [
     } else if (req.method === 'POST') {
       const { name, number } = req.body;
   
-      // Validate data
+
       if (!name || !number) {
         return res.status(400).json({ error: 'name or number is missing' });
       }
