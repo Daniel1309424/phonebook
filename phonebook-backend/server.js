@@ -10,7 +10,7 @@ app.use(express.json());
 morgan.token('body', (req) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :response-time ms - :body'));
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 const personsRoutes = require('./api/persons');
 const infoRoutes = require('./api/info');
@@ -20,7 +20,7 @@ app.use('/info', infoRoutes);
 
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
